@@ -1,0 +1,54 @@
+﻿@model Evaluacion.Models.Response.Cv.InformacionDTO
+
+@{
+    ViewData["Title"] = "Detalle";
+}
+
+<div class="row row-height" style="margin-bottom: 13px;">
+    <div class="col-md-12">
+        <div class="card-group">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-subtitle mb-2" style="font-size: 20px; color: #198754"><i class="fa fa-wrench"></i>   Detalle</h1>
+                    <hr style="margin-bottom:5px;" />
+
+                    <div class="row row-height">
+                        <div class="col-md-12">
+                            <div class="card-group">
+                                <div class="card">
+                                    <div class="card-body">
+
+                                        <h5 class="card-subtitle mb-2" style="font-size: 15px; color: #198754;"><i class="fa fa-wrench"></i>   Información</h5>
+                                        <hr style="margin:0;" />
+                                        <p style="margin:0;"><small style="font-weight: bold;">Nombre: </small><small>@Model.Nombre</small></p>
+                                        <p style="margin:0;"><small style="font-weight: bold;">Correo: </small><small>@Model.Correo</small></p>
+                                        <p style="margin:0;"><small style="font-weight: bold;">Teléfono: </small><small>@Model.Telefono</small></p>
+                                        <p style="margin:0;"><small style="font-weight: bold;">Sexo: </small><small>@Model.Sexo</small></p>
+                                        <p style="margin:0;"><small style="font-weight: bold;">País de residencia: </small><small>@Model.PaisResidencia</small></p>
+                                        @if (Model.Estado == 1)
+                                        {
+                                            <p style="margin:0;"><small style="font-weight: bold;">Estado: </small><small><span class="active-state">Activo</span></small></p>
+                                        }
+                                        @if (Model.Estado == 2)
+                                        {
+                                            <p style="margin:0;"><small style="font-weight: bold;">Estado: </small><small><span class="inactive-state">Inactivo</span></small></p>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="d-grid gap-2">
+                                <a href="@Url.Action("Index", "Informacion", null)" class="btn btn-success">Regresar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

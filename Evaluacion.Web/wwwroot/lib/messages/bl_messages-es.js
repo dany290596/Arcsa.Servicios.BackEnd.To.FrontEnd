@@ -1,0 +1,12 @@
+﻿var msg_error = 'Lo sentimos, ha ocurrido un error';
+var msg_title_info = 'Información';
+var msg_title_confirm = 'Confirmación';
+var msg_title_error = 'Error';
+var msg_title_cancel = 'Cancelar';
+var msg_title_accept = 'Aceptar';
+var msg_01 = '¿Está seguro?';
+var msg_02 = 'Elemento eliminado correctamente';
+var msg_03 = 'Elemento guardado correctamente';
+var msg_04 = 'Ingrese la información requerida';
+var msg_39 = 'La solicitud se realizó con éxito';
+var msg_40 = 'La solicitud se canceló con éxito';

@@ -1,0 +1,155 @@
+﻿@model Evaluacion.Models.Request.Cv.InformacionDTO
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<div class="row row-height" style="margin-bottom: 13px;">
+    <div class="col-md-12">
+        <div class="card-group">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-subtitle mb-2" style="font-size: 20px; color: #198754"><i class="fa fa-wrench"></i>   Editar</h1>
+                    <hr style="margin:0;" />
+                    <form class="InformacionForm" novalidate>
+                        @Html.HiddenFor(d => d.Id)
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="control-label">Nombre</label>
+                                @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control", @id="Nombre", maxlength = "50", placeholder="Ingresa el nombre", required = "required" })
+                                <div class="invalid-feedback">
+                                    El campo (Nombre) es requerido.
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="control-label">Correo</label>
+                                @Html.TextBoxFor(m => m.Correo, new { @class = "form-control", @id="Correo", maxlength = "50", placeholder="Ingresa el correo", required = "required" })
+                                <div class="invalid-feedback">
+                                    El campo (Correo) es requerido.
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="control-label">Teléfono</label>
+                                @Html.TextBoxFor(m => m.Telefono, new { @class = "form-control", @id="Telefono", maxlength = "50", placeholder="Ingresa el teléfono", required = "required" })
+                                <div class="invalid-feedback">
+                                    El campo (Teléfono) es requerido.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="control-label">Sexo</label>
+                                @Html.TextBoxFor(m => m.Sexo, new { @class = "form-control", @id="Sexo", maxlength = "50", placeholder="Ingresa el sexo", required = "required" })
+                                <div class="invalid-feedback">
+                                    El campo (Sexo) es requerido.
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="control-label">País de residencia</label>
+                                @Html.TextBoxFor(m => m.PaisResidencia, new { @class = "form-control", @id="PaisResidencia", maxlength = "50", placeholder="Ingresa el país de residencia", required = "required" })
+                                <div class="invalid-feedback">
+                                    El campo (País de residencia) es requerido.
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="d-grid gap-2">
+                                    <input type="submit" class="btn btn-success" value="Actualizar">
+                                    <a href="@Url.Action("Index", "Informacion", null)" class="btn btn-success">Regresar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    /** DBR - Variables que obtienen los valores provenientes por medio de la url */
+    let paramUrl = new URLSearchParams(location.search);
+    console.log("PARAM URL", paramUrl);
+    var getParamUrl = paramUrl.get('id');
+    console.log("GET PARAM URL => ", getParamUrl);
+
+    var forms = document.getElementsByClassName('InformacionForm');
+    var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+
+            if (form.checkValidity() != false) {
+                event.preventDefault();
+                event.stopPropagation();
+                actualizar();
+            }
+
+            form.classList.add('was-validated');
+
+        }, false);
+    });
+
+    function actualizar() {
+        swal({
+            title: msg_01,
+            text: "¡La información esta por actualizarse!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: 'btn-danger',
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: "Cancelar",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+            function(isConfirm) {
+                if (isConfirm) {
+
+                    var uri = '@Url.Action("Update", "Informacion")';
+
+                    var Nombre = document.getElementById("Nombre").value;
+                    var Correo = document.getElementById("Correo").value;
+                    var Telefono = document.getElementById("Telefono").value;
+                    var Sexo = document.getElementById("Sexo").value;
+                    var PaisResidencia = document.getElementById("PaisResidencia").value;
+
+                    let params = {
+                        Nombre: Nombre,
+                        Correo: Correo,
+                        Telefono: Telefono,
+                        Sexo: Sexo,
+                        PaisResidencia: PaisResidencia
+                    }
+
+                    $.ajax({
+                        type: 'PUT',
+                        url: uri,
+                        data: { id: getParamUrl, data: params },
+                        success: function(result) {
+                            exitoSweet();
+                            window.location = '@Url.Action("Index", "Informacion")';
+                        },
+                        error: function() {
+                            errorSweet();
+                        }
+                    });
+                } else {
+                    swal(msg_title_cancel, msg_40, "info");
+                }
+            });
+    }
+
+    /** DBR - Funcion que permite mostrar una alerta de tipo success */
+    function exitoSweet() {
+        swal(msg_title_accept, msg_39, "success");
+    }
+
+    /** DBR - Funcion que permite mostrar una alerta de tipo error */
+    function errorSweet() {
+        swal(msg_title_error, msg_error, "error");
+    }
+</script>

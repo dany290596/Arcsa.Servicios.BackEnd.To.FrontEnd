@@ -1,0 +1,329 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebVisitsManagement</title>
+
+    <!-- CSS ::: WebVisitsManagement -->
+    <link rel="stylesheet" href="~/WebVisitsManagement.Web.styles.css" asp-append-version="true" />
+
+    <!-- CSS ::: Vistas -->
+    <link rel="stylesheet" href="~/css/Common/Common.css" asp-append-version="true" />
+
+    @*
+    <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/common/Common.css" asp-append-version="true" />
+    *@
+    <!-- JS ::: JQuery -->
+    <script src="~/css/menu/jquery/dist/jquery.js"></script>
+
+    <!-- JS ::: Assets -->
+    <script src="~/assets/js/main.js"></script>
+
+    <!-- CSS ::: Menu -->
+    <link rel="stylesheet" href="~/css/menu/bootstrap/dist/css/bootstrap.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/menu/font-awesome/css/font-awesome.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/menu/themify-icons/css/themify-icons.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/menu/flag-icon-css/css/flag-icon.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/menu/selectFX/css/cs-skin-elastic.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/menu/chosen/chosen.min.css">
+    <link rel="stylesheet" href="~/css/menu/jqvmap/dist/jqvmap.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/assets/css/style.css" asp-append-version="true">
+
+    <!-- CSS ::: Fontawesome -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- CSS ::: Slim Select -->
+    <link rel="stylesheet" href="~/lib/slim-select/dist/slimselect.css" />
+    <link rel="stylesheet" href="~/lib/slim-select/dist/slimselect.min.css" />
+
+    <!-- CSS ::: Vistas Parciales -->
+    <!-- CSS ::: Bootstrap -->
+    @*    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />*@
+
+    <!-- CSS ::: Bootstrap Datetimepicker -->
+    @* <link rel="stylesheet" href="~/lib/bootstrap/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" asp-append-version="true" />*@
+
+    <!-- CSS ::: Bootstrap Twitter -->
+    @* <link rel="stylesheet" href="~/lib/bootstrap/twitter-bootstrap-3.0.0/dist/css/bootstrap.css" asp-append-version="true" />*@
+
+    <!-- CSS ::: Sweetalert -->
+    <link rel="stylesheet" href="~/lib/bootstrap/bootstrap-sweetalert/sweetalert.css" />
+
+    <!-- JS ::: Bootstrap -->
+    @*    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>*@
+
+    <!-- JS ::: Fontawesome -->
+    @*    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>*@
+
+    <!-- JS ::: Sweetalert -->
+    @*    <script src="~/lib/bootstrap/bootstrap-sweetalert/sweetalert.min.js"></script>
+    <script src="~/lib/bootstrap/bootstrap-sweetalert/sweetalert.js"></script>*@
+
+    <!-- JS ::: Vistas -->
+    @*    <script src="~/lib/custom/CustomJs.js"></script>
+    <script src="~/lib/messages/bl_messages-es.js"></script>
+    *@
+
+    <!-- JS ::: Slim Select -->
+    <script src="~/lib/slim-select/dist/slimselect.js"></script>
+    <script src="~/lib/slim-select/dist/slimselect.min.js"></script>
+</head>
+<body>
+
+    <!-- Left Panel -->
+    @Html.Partial("_Navigation")
+    <!-- Left Panel -->
+    <!-- Right Panel -->
+    <div id="right-panel" class="right-panel">
+
+        <!-- Header-->
+        <header id="header" class="header">
+
+            <div class="header-menu">
+
+                <div class="col-sm-7">
+                    <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-list-ol"></i></a>
+                    <div class="header-left">
+                        <button class="search-trigger"><i class="fa fa-search"></i></button>
+                        <div class="form-inline">
+                            <form class="search-form">
+                                <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
+                                <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
+                            </form>
+                        </div>
+
+                        <div class="dropdown for-notification">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-bell"></i>
+                                <span class="count bg-danger">5</span>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="notification">
+                                <p class="red">You have 3 Notification</p>
+                                <a class="dropdown-item media bg-flat-color-1" href="#">
+                                    <i class="fa fa-check"></i>
+                                    <p>Mensaje #1 Hola Mundo.</p>
+                                </a>
+                                <a class="dropdown-item media bg-flat-color-4" href="#">
+                                    <i class="fa fa-info"></i>
+                                    <p>Mensaje #2 Hola Mundo.</p>
+                                </a>
+                                <a class="dropdown-item media bg-flat-color-5" href="#">
+                                    <i class="fa fa-warning"></i>
+                                    <p>Mensaje #3 Hola Mundo.</p>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="dropdown for-message">
+                            <button class="btn btn-secondary dropdown-toggle" type="button"
+                                    id="message"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="ti-email"></i>
+                                <span class="count bg-primary">9</span>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="message">
+                                <p class="red">You have 4 Mails</p>
+                                <a class="dropdown-item media bg-flat-color-1" href="#">
+                                    <span class="photo media-left"><img alt="avatar" src="~/images/avatar/1.jpg"></span>
+                                    <span class="message media-body">
+                                        <span class="name float-left">Daniel Benito Rosales</span>
+                                        <span class="time float-right">Ahora</span>
+                                        <p>Hola Mundo</p>
+                                    </span>
+                                </a>
+                                <a class="dropdown-item media bg-flat-color-4" href="#">
+                                    <span class="photo media-left"><img alt="avatar" src="~/images/avatar/2.jpg"></span>
+                                    <span class="message media-body">
+                                        <span class="name float-left">Oscar Maya Teran</span>
+                                        <span class="time float-right">5 minutos</span>
+                                        <p>Hola Mundo</p>
+                                    </span>
+                                </a>
+                                <a class="dropdown-item media bg-flat-color-5" href="#">
+                                    <span class="photo media-left"><img alt="avatar" src="~/images/avatar/3.jpg"></span>
+                                    <span class="message media-body">
+                                        <span class="name float-left">Diego Mondragon Perez</span>
+                                        <span class="time float-right">10 minutos</span>
+                                        <p>Hola Mundo</p>
+                                    </span>
+                                </a>
+                                <a class="dropdown-item media bg-flat-color-3" href="#">
+                                    <span class="photo media-left"><img alt="avatar" src="~/images/avatar/4.jpg"></span>
+                                    <span class="message media-body">
+                                        <span class="name float-left">Maria Brito Valdez</span>
+                                        <span class="time float-right">15 minutos</span>
+                                        <p>Hola Mundo</p>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-5">
+                    <div class="user-area dropdown float-right">
+                        @*@Html.Partial("_ProfileMenu")*@
+                    </div>
+
+                    @*
+                    <div class="language-select dropdown" id="language-select">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="language" aria-haspopup="true" aria-expanded="true">
+                    <i class="flag-icon flag-icon-us"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="language">
+                    <div class="dropdown-item">
+                    <span class="flag-icon flag-icon-fr"></span>
+                    </div>
+                    <div class="dropdown-item">
+                    <i class="flag-icon flag-icon-es"></i>
+                    </div>
+                    <div class="dropdown-item">
+                    <i class="flag-icon flag-icon-us"></i>
+                    </div>
+                    <div class="dropdown-item">
+                    <i class="flag-icon flag-icon-it"></i>
+                    </div>
+                    </div>
+                    </div>
+                    *@
+
+                </div>
+            </div>
+
+        </header>
+        <!-- /header -->
+        <!-- Header-->
+
+        <div class="breadcrumbs">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Panel</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li class="active">Panel</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- .content -->
+        <div class="content mt-3">
+            <div class="animated fadeIn">
+                <main>
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+        <!-- .content -->
+
+    </div>
+    <!-- /#right-panel -->
+    <!-- Right Panel -->
+    <!-- JS ::: JQuery -->
+    <script src="~/css/menu/jquery/dist/jquery.min.js"></script>
+    <script src="~/css/menu/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/css/menu/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/css/menu/jquery-validation-unobtrusive/src/jquery.validate.unobtrusive.js"></script>
+
+    <!-- JS ::: Popper -->
+    <script src="~/css/menu/popper.js/dist/umd/popper.min.js"></script>
+
+    <!-- JS ::: Bootstrap -->
+    <script src="~/css/menu/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- JS ::: Chosen -->
+    <script src="~/css/menu/chosen/chosen.jquery.min.js"></script>
+
+    <!-- JS ::: Chart -->
+    <script src="~/css/menu/chart.js/dist/Chart.bundle.min.js"></script>
+
+    <!-- JS ::: Assets -->
+    <script src="~/assets/js/dashboard.js"></script>
+    <script src="~/assets/js/widgets.js"></script>
+
+    <!-- JS ::: JQVMAP JQuery -->
+    <script src="~/css/menu/jqvmap/dist/jquery.vmap.min.js"></script>
+    <script src="~/css/menu/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <script src="~/css/menu/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script>
+        (function($) {
+            "use strict";
+
+            jQuery('#vmap').vectorMap({
+                map: 'world_en',
+                backgroundColor: null,
+                color: '#ffffff',
+                hoverOpacity: 0.7,
+                selectedColor: '#1de9b6',
+                enableZoom: true,
+                showTooltip: true,
+                values: sample_data,
+                scaleColors: ['#1de9b6', '#03a9f5'],
+                normalizeFunction: 'polynomial'
+            });
+        })(jQuery);
+    </script>
+
+    @*    <script>
+    jQuery(document).ready(function() {
+    jQuery(".standardSelect").chosen({
+    disable_search_threshold: 10,
+    no_results_text: "Oops, nothing found!",
+    width: "100%"
+    });
+    });
+    </script>*@
+
+    <!-- JS ::: Bootstrap Sweetalert -->
+    <script src="~/lib/bootstrap/bootstrap-sweetalert/sweetalert.min.js"></script>
+    <script src="~/lib/bootstrap/bootstrap-sweetalert/sweetalert.js"></script>
+
+    <!-- JS ::: Vistas -->
+    <script src="~/lib/messages/bl_messages-es.js"></script>
+
+    <!-- JS ::: Etiquetas -->
+    <script src="~/js/tags/popover.js"></script>
+
+    <!-- JS ::: Moment -->
+    <script src="~/lib/moment/moment.js/moment.js"></script>
+    <script src="~/lib/moment/moment.js/moment.min.js"></script>
+
+    <!-- JS ::: Bootstrap Datetimepicker -->
+    <script src="~/lib/bootstrap/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+
+
+    @*    <script src="~/css/menu/jquery/dist/jquery.js"></script>*@
+    @*    <script src="~/css/menu/jquery/dist/jquery.min.js"></script>*@
+
+
+    @*    <script src="~/lib/jquery/jquery-2.1.3/jquery.js"></script>
+    <script src="~/lib/jquery/jquery-3.3.1.min.js"></script>
+    <script src="~/lib/jquery/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery/jquery-validate/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/jquery/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/lib/jquery/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>*@
+
+    @section scripts{
+        <!-- JS ::: Bootstrap -->
+        @*        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/bootstrap/bootstrap-dropdown-hover/jquery.bootstrap-dropdown-hover.js"></script>
+    <script src="~/lib/bootstrap/bootstrap-dropdown-hover/jquery.bootstrap-dropdown-hover.min.js"></script>*@
+
+        <!-- JS ::: Bootstrap Twitter -->
+        @*    <script src="~/lib/bootstrap/twitter-bootstrap-3.0.0/dist/js/bootstrap.js"></script>*@
+    }
+
+        @await RenderSectionAsync("Scripts", required: false)
+    </body>
+    </html>

@@ -1,0 +1,173 @@
+﻿@using Newtonsoft.Json;
+@using Evaluacion.Framework.Extensions;
+
+@{
+    string menu = string.Empty;
+    int contador = 1;
+
+    Evaluacion.Models.Response.Menu.MenuProfileDTO menuProfileDTO = new Evaluacion.Models.Response.Menu.MenuProfileDTO();
+    if (Context.Session.GetString(Evaluacion.Web.Framework.CommonSession.CURRENT_MENU) != null)
+    {
+        menu = Context.Session.GetString(Evaluacion.Web.Framework.CommonSession.CURRENT_MENU);
+        menuProfileDTO = JsonConvert.DeserializeObject<Evaluacion.Models.Response.Menu.MenuProfileDTO>(menu);
+    }
+}
+
+<!-- Left Panel -->
+<!-- /#left-panel -->
+<aside id="left-panel" class="left-panel">
+    <nav class="navbar navbar-expand-sm navbar-default">
+
+        <div class="navbar-header">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" href="#"><img src="~/images/DANIEL.jpeg" alt="Logo"></a>
+            <a class="navbar-brand hidden" href="#"><img src="~/images/Icon_Admin.png" alt="Logo"></a>
+        </div>
+
+        <!-- /.navbar-collapse -->
+        <div id="main-menu" class="main-menu collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="@Url.Action("Index", "Informacion")"><i class="menu-icon fa fa-indent"></i>Inicio</a>
+                </li>
+
+                @foreach (var item1 in menuProfileDTO.modulos)
+                {
+                    @if (@contador == 1)
+                    {
+                        <!-- /.menu-title -->
+                        <h3 class="menu-title">CV</h3>
+                        <!-- /.menu-title -->
+                    }
+
+                    <li class="menu-item-has-children dropdown">
+                        @if (@item1.id == "98a61675-93c3-45cb-a087-f03f19ac8920")
+                        {
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-indent"></i>Estudios</a>
+                        }
+
+                        <ul class="sub-menu children dropdown-menu">
+
+                            @foreach (var item2 in item1.secciones)
+                            {
+                                @if (@item2.id == "173fca98-ca2d-4aa4-8788-e5e806dc55fd")
+                                {
+                                    <li class="@Html.IsSelected(controller: "Estudios,")">
+                                        <i class="menu-icon fa fa-vcard-o"></i><a href="@Url.Action("Index", "Estudios")">Estudios</a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </li>
+
+                    <li class="menu-item-has-children dropdown">
+                        @if (@item1.id == "02539820-eacc-4473-abe1-9e9f57663a6d")
+                        {
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-indent"></i>Experiencia Laboral</a>
+                        }
+
+                        <ul class="sub-menu children dropdown-menu">
+
+                            @foreach (var item2 in item1.secciones)
+                            {
+                                @if (@item2.id == "2e1c4942-e4e1-427a-b3b0-66e427be6a79")
+                                {
+                                    <li class="@Html.IsSelected(controller: "ExperienciaLaboral,")">
+                                        <i class="menu-icon fa fa-vcard-o"></i><a href="@Url.Action("Index", "ExperienciaLaboral")">Experiencia Laboral</a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </li>
+
+                    <li class="menu-item-has-children dropdown">
+                        @if (@item1.id == "acd850c0-e034-4c0f-8c55-786d3043913f")
+                        {
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-indent"></i>Conocimientos</a>
+                        }
+
+                        <ul class="sub-menu children dropdown-menu">
+
+                            @foreach (var item2 in item1.secciones)
+                            {
+                                @if (@item2.id == "0a27e90a-34bb-44cf-8189-d5a00514e8ae")
+                                {
+                                    <li class="@Html.IsSelected(controller: "Conocimientos,")">
+                                        <i class="menu-icon fa fa-vcard-o"></i><a href="@Url.Action("Index", "Conocimientos")">Conocimientos</a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </li>
+
+                    <li class="menu-item-has-children dropdown">
+                        @if (@item1.id == "6e45031e-5700-464a-9080-a55ce1e4a0d8")
+                        {
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-indent"></i>Idiomas</a>
+                        }
+
+                        <ul class="sub-menu children dropdown-menu">
+
+                            @foreach (var item2 in item1.secciones)
+                            {
+                                @if (@item2.id == "b52b8403-1305-4ad0-bb89-7927b560183f")
+                                {
+                                    <li class="@Html.IsSelected(controller: "Idiomas,")">
+                                        <i class="menu-icon fa fa-vcard-o"></i><a href="@Url.Action("Index", "Idiomas")">Idiomas</a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </li>
+
+                    <li class="menu-item-has-children dropdown">
+                        @if (@item1.id == "3b8fab79-3695-4b70-8aa2-b9c5bebd5df3")
+                        {
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-indent"></i>Intereses</a>
+                        }
+
+                        <ul class="sub-menu children dropdown-menu">
+
+                            @foreach (var item2 in item1.secciones)
+                            {
+                                @if (@item2.id == "8989fa42-a766-4ef4-b3a7-b7e84ea076ba")
+                                {
+                                    <li class="@Html.IsSelected(controller: "Intereses,")">
+                                        <i class="menu-icon fa fa-vcard-o"></i><a href="@Url.Action("Index", "Intereses")">Intereses</a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </li>
+
+                    <li class="menu-item-has-children dropdown">
+                        @if (@item1.id == "9d2e1423-c79b-4e95-ac43-9d571dbabf7c")
+                        {
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-indent"></i>Datos Personales</a>
+                        }
+
+                        <ul class="sub-menu children dropdown-menu">
+
+                            @foreach (var item2 in item1.secciones)
+                            {
+                                @if (@item2.id == "80a707e6-40c7-4673-b31e-11da64c1d2d4")
+                                {
+                                    <li class="@Html.IsSelected(controller: "DatosPersonales,")">
+                                        <i class="menu-icon fa fa-vcard-o"></i><a href="@Url.Action("Index", "DatosPersonales")">Datos Personales</a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </li>
+
+                    contador++;
+                }
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
+</aside>
+<!-- /#left-panel -->
+<!-- Left Panel -->

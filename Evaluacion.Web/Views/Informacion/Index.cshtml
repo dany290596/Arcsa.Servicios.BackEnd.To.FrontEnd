@@ -1,0 +1,178 @@
+﻿@model Evaluacion.Services.Responses.ApiResponse<IEnumerable<Evaluacion.Models.Response.Cv.InformacionDTO>>
+
+@{
+    ViewData["Title"] = "Información";
+}
+
+<a href="@Url.Action("Create", "Informacion", null)" class="btn-flotante">
+    <i class="fa fa-pencil"></i>
+    <span>
+        <strong></strong>
+    </span>
+</a>
+
+<div class="row row-height">
+    <div class="col-md-12">
+
+        <div class="card-group">
+            <div class="card">
+
+                <div class="card-body">
+
+                    <h5 class="card-subtitle mb-2" style="font-size: 15px; color: #198754;"><i class="menu-icon fa fa-credit-card"></i>   Arcsa Servicios</h5>
+                    <hr style="margin:10px;" />
+
+                    <div class="row row-height" style="margin-bottom: 13px;" id="">
+                        @foreach (var item in Model.Data)
+                        {
+                            <div class="col-md-4">
+                                <div class="card-group">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-subtitle mb-2" style="font-size: 15px; color: #198754;"><i class="fa fa-check"></i>   Información</h5>
+                                            <hr style="margin:0; margin-bottom: 13px;" />
+                                            <p style="margin:0;"><small style="font-weight: bold;">Nombre: </small><small>@item.Nombre</small></p>
+                                            <p style="margin:0;"><small style="font-weight: bold;">Correo: </small><small>@item.Correo</small></p>
+                                            <p style="margin:0;"><small style="font-weight: bold;">Teléfono: </small><small>@item.Telefono</small></p>
+                                            <p style="margin:0;"><small style="font-weight: bold;">Sexo: </small><small>@item.Sexo</small></p>
+                                            <p style="margin:0;"><small style="font-weight: bold;">País de residencia: </small><small>@item.PaisResidencia</small></p>
+                                            @if (item.Estado == 1)
+                                            {
+                                                <p style="margin:0;"><small style="font-weight: bold;">Estado: </small><small><span class="active-state">Activo</span></small></p>
+                                            }
+                                            @if (item.Estado == 2)
+                                            {
+                                                <p style="margin:0;"><small style="font-weight: bold;">Estado: </small><small><span class="inactive-state">Inactivo</span></small></p>
+                                            }
+                                            @if (item.Estado == 1)
+                                            {
+                                                <button type="button" class="btn btn-link fa fa-times" id="@item.Id" onclick="inactivate(this.id)"></button>
+                                                <a href="@Url.ActionLink("Update", "Informacion", new { id = item.Id.ToString() })" class="btn btn-link" data-toggle="tooltip-update" data-placement="bottom" title="Editar !!!">
+                                                    <i class="fa fa-pencil-square-o"></i>
+                                                    <span>
+                                                        <strong></strong>
+                                                    </span>
+                                                </a>
+                                                <a href="@Url.Action("Detail", "Informacion", new { id = item.Id.ToString() })" class="btn btn-link" data-toggle="tooltip-detail" data-placement="bottom" title="Detalle !!!">
+                                                    <i class="fa fa-info"></i>
+                                                    <span>
+                                                        <strong></strong>
+                                                    </span>
+                                                </a>
+                                            }
+                                            @if (item.Estado == 2)
+                                            {
+                                                <button type="button" class="btn btn-link fa fa-check" id="@item.Id" onclick="activate(this.id)"></button>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    /** DBR - Función que permite inactivar */
+    function inactivate(id) {
+        console.log("INACTIVATE => ", id);
+        swal({
+            title: msg_01,
+            text: "¡La información está por inactivarse!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: 'btn-danger',
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: "Cancelar",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+            function(isConfirm) {
+                if (isConfirm) {
+                    var uri = '@Url.Action("Inactivate", "Informacion")';
+
+                    $.ajax({
+                        type: 'PATCH',
+                        url: uri,
+                        data: { id: id },
+                        success: function(result) {
+                            console.log("RESPUESTA ::: ", JSON.stringify(result.response));
+
+                            if (result.response.respuesta == false) {
+                                swal(msg_title_accept, result.response.mensaje, "warning");
+                            }
+
+                            if (result.response.respuesta == true) {
+                                swal(msg_title_accept, result.response.mensaje, "success");
+                                window.location = '@Url.Action("Index", "Informacion")';
+                            }
+                        },
+                        error: function() {
+                            errorSweet();
+                        }
+                    });
+                } else {
+                    swal(msg_title_cancel, msg_40, "info");
+                }
+            });
+    }
+
+    /** DBR - Función que permite activar */
+    function activate(id) {
+        console.log("ACTIVATE => ", id);
+        swal({
+            title: msg_01,
+            text: "¡La información está por activarse!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: 'btn-danger',
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: "Cancelar",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+            function(isConfirm) {
+                if (isConfirm) {
+                    var uri = '@Url.Action("Activate", "Informacion")';
+
+                    $.ajax({
+                        type: 'PATCH',
+                        url: uri,
+                        data: { id: id },
+                        success: function(result) {
+                            console.log("RESPUESTA ::: ", JSON.stringify(result.response));
+
+                            if (result.response.respuesta == false) {
+                                swal(msg_title_accept, result.response.mensaje, "warning");
+                            }
+
+                            if (result.response.respuesta == true) {
+                                swal(msg_title_accept, result.response.mensaje, "success");
+                                window.location = '@Url.Action("Index", "Informacion")';
+                            }
+                        },
+                        error: function() {
+                            errorSweet();
+                        }
+                    });
+                } else {
+                    swal(msg_title_cancel, msg_40, "info");
+                }
+            });
+    }
+
+    /** DBR - Función que permite mosatrar un mensaje de exito */
+    function exitoSweet() {
+        swal(msg_title_accept, msg_39, "success");
+    }
+
+    /** DBR - Función que permite mosatrar un mensaje de error */
+    function errorSweet() {
+        swal(msg_title_error, msg_error, "error");
+    }
+</script>
